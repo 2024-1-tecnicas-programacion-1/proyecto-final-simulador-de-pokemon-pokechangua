@@ -354,9 +354,9 @@ public class Principal {
         tipo = TipoPokemon.NORMAL;
     }
     // Definir el estado inicial del Pokémon.
-    Estado estado = Estado.NORMAL;
+    Estado estados = Estado.NORMAL;
     // Aquí se crea un nuevo pokémon y se agrega a la lista.
-    Pokemon nuevoPokemon = new Pokemon(nombreNuevoPokemon, saludNuevoPokemon, ataqueNuevoPokemon, tipo, estado) {};
+    Pokemon nuevoPokemon = new Pokemon(nombreNuevoPokemon, saludNuevoPokemon, ataqueNuevoPokemon, tipo, estados) {};
     pokemones.add(nuevoPokemon);
     System.out.println("Nuevo Pokémon registrado: " + nombreNuevoPokemon + " (Salud: " + saludNuevoPokemon + ", Ataque: " + ataqueNuevoPokemon + ", Tipo: " + tipo + ")");
     }

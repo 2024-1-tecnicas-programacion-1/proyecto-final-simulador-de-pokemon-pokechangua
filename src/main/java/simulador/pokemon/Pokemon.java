@@ -35,8 +35,12 @@ public abstract class Pokemon {
 
 
 
-    public abstract void atacar(Pokemon oponente);
+    public static void atacar(Pokemon oponente) { 
+        
+    }
 
    
-    public abstract void entrenar();
+    public void entrenar(){ 
+        
+    }
 }

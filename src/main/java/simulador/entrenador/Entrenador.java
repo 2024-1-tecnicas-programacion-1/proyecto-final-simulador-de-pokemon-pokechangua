@@ -53,5 +53,13 @@ public class Entrenador{ //O(1)
     public void setPokemones(List<Pokemon> pokemones) {
         this.pokemones = pokemones; 
     }
+
+    public Pokemon getPokemon(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Pokemon getPokemon(int i) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
      
 }

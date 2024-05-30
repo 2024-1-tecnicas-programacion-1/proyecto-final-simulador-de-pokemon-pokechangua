@@ -1,6 +1,7 @@
 package simulador;
 import java.util.Scanner;
-import simulador.Entrenador;
+import simulador.entrenador.Entrenador;
+import simulador.pokemon.Pokemon;
 
 public class Principal {
     public static void main(String[] args) {

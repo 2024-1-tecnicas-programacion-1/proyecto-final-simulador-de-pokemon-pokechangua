@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import simulador.pokemon.Pokemon;
 
-public class Entrenador{ //O(1)
+public class Entrenador{ 
     private String nombre; 
     private List<Pokemon> pokemones; 
     
@@ -15,21 +15,21 @@ public class Entrenador{ //O(1)
         this.pokemones = new LinkedList<>();           
     }
  
-    public void agregarPokemon(Pokemon pokemon) { //O(1)
+    public void agregarPokemon(Pokemon pokemon) { 
         if (pokemones.size() < 6) { 
             pokemones.add(pokemon); 
         } 
     }
   
-    public void entrenarPokemon() { //O(1)
+    public void entrenarPokemon() { 
         if (pokemones.contains(pokemon)) { 
-            pokemon.entrenar(); //20 de salud y 5 de ataque.         
+            pokemon.entrenar();          
         } 
     }
     
-     public Pokemon prepararBatalla() { //O(1)
-        if (!pokemones.isEmpty()) { //Saber si la lista de pokemones no esta vacía.
-            Pokemon pokemonParaBatalla = pokemones.get(0); // Selecciona el primer Pokémon del equipo.
+     public Pokemon prepararBatalla() { 
+        if (!pokemones.isEmpty()) { 
+            Pokemon pokemonParaBatalla = pokemones.get(0); 
             System.out.println(pokemonParaBatalla + " ha sido seleccionado para la batalla."); 
             return pokemonParaBatalla; 
         } else { 
@@ -60,7 +60,7 @@ public class Entrenador{ //O(1)
     } 
 
     public void mostrarPokemones() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet."); 
     }
      
 }

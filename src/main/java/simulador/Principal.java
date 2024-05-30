@@ -16,7 +16,7 @@ import simulador.pokemon.Onix;
 import simulador.pokemon.Bellsprout;
 import simulador.pokemon.TipoPokemon;
 import simulador.pokemon.Pokemon;
-import simulador.pokemon.Estados;
+import simulador.pokemon.Estado;
 
 public class Principal { 
     
@@ -354,9 +354,9 @@ public class Principal {
         tipo = TipoPokemon.NORMAL;
     }
     // Definir el estado inicial del Pokémon.
-    Estados estados = Estados.NORMAL;
+    Estado estado = Estado.NORMAL;
     // Aquí se crea un nuevo pokémon y se agrega a la lista.
-    Pokemon nuevoPokemon = new Pokemon(nombreNuevoPokemon, saludNuevoPokemon, ataqueNuevoPokemon, tipo, estados) {};
+    Pokemon nuevoPokemon = new Pokemon(nombreNuevoPokemon, saludNuevoPokemon, ataqueNuevoPokemon, tipo, estado) {};
     pokemones.add(nuevoPokemon);
     System.out.println("Nuevo Pokémon registrado: " + nombreNuevoPokemon + " (Salud: " + saludNuevoPokemon + ", Ataque: " + ataqueNuevoPokemon + ", Tipo: " + tipo + ")");
     }

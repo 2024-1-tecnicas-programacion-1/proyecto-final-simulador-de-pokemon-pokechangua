@@ -3,7 +3,7 @@ package simulador.pokemon;
 
 public class Voltorb extends Pokemon {
     public Voltorb() {
-        super("Voltorb", 40, 30, TipoPokemon.ELECTRICO, estados);
+        super("Voltorb", 40, 30, TipoPokemon.ELECTRICO, estado);
     }
 
   

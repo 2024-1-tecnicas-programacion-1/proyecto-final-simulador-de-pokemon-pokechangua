@@ -55,10 +55,11 @@ public class Entrenador{ //O(1)
     }
 
     public Pokemon getPokemon(int i) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        this.pokemon = pokemon;
+        return null;
+    } 
 
-    public Pokemon getPokemon(int i) {
+    public void mostrarPokemones() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
      

@@ -1,7 +1,12 @@
 package simulador;
 import java.util.Scanner;
+import simulador.batalla.Batalla;
 import simulador.entrenador.Entrenador;
 import simulador.pokemon.Pokemon;
+import simulador.pokemon.Psyduck;
+import simulador.pokemon.Hitmonlee;
+import simulador.pokemon.Exeggcute;
+import simulador.pokemon.Growlithe;
 
 public class Principal {
     public static void main(String[] args) {
@@ -14,10 +19,10 @@ public class Principal {
         Entrenador entrenador2 = new Entrenador("Entrenador 2");
 
         // Agregar pokemones a los entrenadores (ejemplo)
-        entrenador1.agregarPokemon(new Pikachu());
-        entrenador1.agregarPokemon(new Bulbasaur());
-        entrenador2.agregarPokemon(new Charmander());
-        entrenador2.agregarPokemon(new Squirtle());
+        entrenador1.agregarPokemon(new Psyduck());
+        entrenador1.agregarPokemon(new Hitmonlee());
+        entrenador2.agregarPokemon(new Exeggcute());
+        entrenador2.agregarPokemon(new Growlithe());
 
         // Menú principal
         int opcion;
@@ -68,8 +73,6 @@ public class Principal {
         System.out.println("Selecciona un Pokémon de " + entrenador2.getNombre() + " para la batalla:");
         Pokemon pokemon2 = seleccionarPokemon(entrenador2);
 
-        // Iniciar la batalla utilizando la clase Batalla
-        Batalla.iniciarBatalla(pokemon1, pokemon2);
     }
 
     public static Pokemon seleccionarPokemon(Entrenador entrenador) {

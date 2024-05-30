@@ -6,7 +6,7 @@ public abstract class Pokemon {
     private TipoPokemon tipo;
     
 
-    public Pokemon(String nombre, int salud, int puntosDeAtaque, TipoPokemon tipo, Estados estados){
+    public Pokemon(String nombre, int salud, int puntosDeAtaque, TipoPokemon tipo, Estado estados){
         this.nombre = nombre;
         this.salud = salud;
         this.puntosDeAtaque = puntosDeAtaque;

@@ -1,122 +1,24 @@
 package simulador.pokemon;
 
 public enum TipoPokemon {
-    NORMAL, FUEGO, AGUA, ELECTRICO, PLANTA, HIELO, PSIQUICO, ROCA, TIERRA, VOLADOR, HADA, LUCHA, BICHO, ACERO, VENENO, FANTASMA, DRAGON, OSCURO, SINIESTRO;
+    FUEGO, AGUA, PLANTA, VENENO, ELECTRICO, PSIQUICO, ROCA, TIERRA, NORMAL, VOLADOR, LUCHA;
 
-    public double daño(TipoPokemon atacante, TipoPokemon defensor) {
-        switch (atacante) {
-            case NORMAL -> {
-                return switch (defensor) {
-                    case ROCA -> 0.5;
-                    case FANTASMA -> 0.0;
-                    default -> 1.0;
-                };
-            }
-            case FUEGO -> {
-                return switch (defensor) {
-                    case PLANTA, BICHO, HIELO -> 2.0;
-                    case AGUA, ROCA, FUEGO -> 0.5;
-                    default -> 1.0;
-                };
-            }
-            case AGUA -> {
-                return switch (defensor) {
-                    case FUEGO, TIERRA, ROCA -> 2.0;
-                    case PLANTA, AGUA -> 0.5;
-                    default -> 1.0;
-                };
-            }
-            case ELECTRICO -> {
-                return switch (defensor) {
-                    case AGUA, VOLADOR -> 2.0;
-                    case ELECTRICO, PLANTA -> 0.5;
-                    case TIERRA -> 0.0;
-                    default -> 1.0;
-                };
-            }
-            case PLANTA -> {
-                return switch (defensor) {
-                    case AGUA, TIERRA, ROCA -> 2.0;
-                    case FUEGO, PLANTA, VOLADOR, BICHO, VENENO -> 0.5;
-                    default -> 1.0;
-                };
-            }
-            case HIELO -> {
-                return switch (defensor) {
-                    case HIELO, PLANTA, TIERRA, VOLADOR -> 2.0;
-                    case FUEGO, LUCHA, ROCA, ACERO -> 0.5;
-                    default -> 1.0;
-                };
-            }
-            case PSIQUICO -> {
-                return switch (defensor) {
-                    case LUCHA, VENENO -> 2.0;
-                    case PSIQUICO, ACERO -> 0.5;
-                    case FANTASMA -> 0.0;
-                    default -> 1.0;
-                };
-            }
-            case ROCA -> {
-                return switch (defensor) {
-                    case NORMAL, FUEGO, VENENO, VOLADOR -> 2.0;
-                    case AGUA, PLANTA, LUCHA, TIERRA -> 0.5;
-                    default -> 1.0;
-                };
-            }
-            case TIERRA -> {
-                return switch (defensor) {
-                    case VENENO, ROCA -> 2.0;
-                    case AGUA, PLANTA, HIELO -> 0.5;
-                    case ELECTRICO, VOLADOR -> 1.0;
-                    default -> 1.0;
-                };
-            }
-            case VOLADOR -> {
-                return switch (defensor) {
-                    case PLANTA, LUCHA, BICHO -> 2.0;
-                    case ROCA, ELECTRICO, ACERO -> 0.5;
-                    default -> 1.0;
-                };
-            }
-            case HADA -> {
-                return switch (defensor) {
-                    case LUCHA, DRAGON -> 2.0;
-                    case VENENO, ACERO -> 0.5;
-                    case FANTASMA -> 0.0;
-                    default -> 1.0;
-                };
-            }
-            case BICHO -> {
-                return switch (defensor) {
-                    case PLANTA, PSIQUICO, OSCURO -> 2.0;
-                    case FUEGO, LUCHA, VOLADOR, VENENO, FANTASMA, ACERO -> 0.5;
-                    default -> 1.0;
-                };
-            }
-            case LUCHA -> {
-                return switch (defensor) {
-                    case NORMAL, ROCA, HIELO, ACERO -> 2.0;
-                    case VOLADOR, VENENO, PSIQUICO, BICHO, HADA -> 0.5;
-                    default -> 1.0;
-                };
-            }
-            case ACERO -> {
-                return switch (defensor) {
-                    case HIELO, ROCA, HADA -> 2.0;
-                    case FUEGO, AGUA, ELECTRICO, ACERO -> 0.5;
-                    default -> 1.0;
-                };
-            }
-            case FANTASMA -> {
-                return switch (defensor) {
-                    case PSIQUICO, FANTASMA -> 2.0;
-                    case NORMAL, SINIESTRO -> 0.0;
-                    default -> 1.0;
-                };
-            }
-            default -> {
-                return 1.0;
-            }
-        }
+    public static double obtenerMultiplicadorDeDaño(TipoPokemon atacante, TipoPokemon defensor) {
+        // Tabla de multiplicadores (simplificada para este ejemplo)
+        double[][] multiplicadores = {
+            // FUEGO    AGUA     PLANTA   VENENO   ELECTRICO  PSIQUICO  ROCA     TIERRA   NORMAL   VOLADOR  LUCHA
+            {1,        0.5,     2,       1,       1,         1,        0.5,     1,       1,       1,       1}, // FUEGO
+            {2,        1,       0.5,     1,       1,         1,        2,       1,       1,       1,       1}, // AGUA
+            {0.5,      2,       1,       0.5,     1,         1,        2,       2,       1,       1,       1}, // PLANTA
+            {1,        1,       2,       1,       1,         1,        0.5,     1,       1,       1,       2}, // VENENO
+            {1,        2,       0.5,     1,       1,         1,        1,       0,       1,       2,       1}, // ELECTRICO
+            {1,        1,       1,       2,       1,         1,        1,       1,       1,       1,       2}, // PSIQUICO
+            {2,        1,       1,       1,       1,         1,        1,       1,       1,       0.5,     2}, // ROCA
+            {2,        1,       1,       2,       0,         1,        2,       1,       1,       1,       1}, // TIERRA
+            {1,        1,       1,       1,       1,         1,        1,       1,       1,       1,       1}, // NORMAL
+            {1,        1,       2,       1,       2,         1,        0.5,     1,       1,       1,       1}, // VOLADOR
+            {1,        1,       1,       1,       1,         0.5,      2,       1,       2,       0.5,     1}  // LUCHA
+        };
+        return multiplicadores[atacante.ordinal()][defensor.ordinal()];
     }
 }

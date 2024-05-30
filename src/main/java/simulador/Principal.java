@@ -1,182 +1,82 @@
-<<<<<<< Updated upstream
 package simulador;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
+import simulador.Entrenador;
 
 public class Principal {
-
-
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Crear Pokémon
-        Map<String, Pokemon> pokemones = Pokemon.inicializarPokemones();
+        System.out.println("Bienvenido al Simulador de Batallas Pokémon");
 
-        // Mostrar información inicial de los Pokémon
-        System.out.println("Información inicial de los Pokémon:");
-        for (Pokemon pokemon : pokemones.values()) {
-            mostrarInfoPokemon(pokemon);
-        }
+        // Crear entrenadores
+        Entrenador entrenador1 = new Entrenador("Entrenador 1");
+        Entrenador entrenador2 = new Entrenador("Entrenador 2");
 
-        // Menú para simular batallas o salir
+        // Agregar pokemones a los entrenadores (ejemplo)
+        entrenador1.agregarPokemon(new Pikachu());
+        entrenador1.agregarPokemon(new Bulbasaur());
+        entrenador2.agregarPokemon(new Charmander());
+        entrenador2.agregarPokemon(new Squirtle());
+
+        // Menú principal
         int opcion;
         do {
-            System.out.println("\nMenú:");
-            System.out.println("1. Simular una batalla");
-            System.out.println("2. Salir");
-            System.out.print("Ingrese su opción: ");
+            System.out.println("\nMenú Principal");
+            System.out.println("1. Gestionar Entrenadores");
+            System.out.println("2. Iniciar Batalla");
+            System.out.println("3. Salir");
+            System.out.print("Elige una opción: ");
             opcion = scanner.nextInt();
+            scanner.nextLine(); // Limpiar el buffer del scanner
+
             switch (opcion) {
                 case 1:
-                    // Simular una batalla
-                    System.out.println("\nElige tu Pokémon para la batalla:");
-                    int i = 1;
-                    for (String nombre : pokemones.keySet()) {
-                        System.out.println(i + ". " + nombre);
-                        i++;
-                    }
-                    System.out.print("Ingrese el número de tu Pokémon: ");
-                    int opcionPokemon = scanner.nextInt();
-                    String nombrePokemon = (String) pokemones.keySet().toArray()[opcionPokemon - 1];
-                    Pokemon pokemonElegido = pokemones.get(nombrePokemon);
-                    System.out.println("\n¡Comienza la batalla!");
-                    Batalla batalla = new Batalla();
-                    batalla.comenzarBatalla(pokemonElegido, batalla.getRandomPokemon(pokemones));
-                    // Mostrar cantidad de vida que le queda al Pokémon
-                    System.out.println("\nVida restante de tu Pokémon después de la batalla:");
-                    mostrarInfoPokemon(pokemonElegido);
+                    // Gestionar entrenadores
+                    gestionarEntrenadores(entrenador1, entrenador2, scanner);
                     break;
                 case 2:
-                    System.out.println("Saliendo...");
+                    // Iniciar batalla
+                    iniciarBatalla(entrenador1, entrenador2);
+                    break;
+                case 3:
+                    System.out.println("¡Hasta luego!");
                     break;
                 default:
-                    System.out.println("Opción inválida. Intente de nuevo.");
+                    System.out.println("Opción no válida. Por favor, selecciona una opción válida.");
                     break;
             }
-        } while (opcion != 2);
+        } while (opcion != 3);
+
+        scanner.close();
     }
 
-    // Método para mostrar información de un Pokémon
-    public static void mostrarInfoPokemon(Pokemon pokemon) {
-        System.out.println("Nombre: " + pokemon.getNombre());
-        System.out.println("Tipo: " + pokemon.getTipo());
-        System.out.println("Salud: " + pokemon.getSalud());
-        System.out.println("Ataque: " + pokemon.getAtaque());
-        System.out.println("--------------------------");
-=======
-import java.util.ArrayList;
-import java.util.List;
+    public static void gestionarEntrenadores(Entrenador entrenador1, Entrenador entrenador2, Scanner scanner) {
+        // Implementa aquí la lógica para gestionar los entrenadores
+        // (por ejemplo, mostrar pokemones)
+        System.out.println("Pokemones de " + entrenador1.getNombre() + ":");
+        entrenador1.mostrarPokemones();
 
-
-enum TipoPokemon {
-    FUEGO, AGUA, PLANTA, ELECTRICO, NORMAL;
-
-   
-    public double obtenerMultiplicadorDeDaño(TipoPokemon atacante, TipoPokemon defensor) {
-       
-        return 1.0;
-    }
-}
-
-
-abstract class Pokemon {
-    protected String nombre;
-    protected double salud;
-    protected double puntosDeAtaque;
-    protected TipoPokemon tipo;
-    protected Estado estado;
-
-    
-    public Pokemon(String nombre, double salud, double puntosDeAtaque, TipoPokemon tipo) {
-        this.nombre = nombre;
-        this.salud = salud;
-        this.puntosDeAtaque = puntosDeAtaque;
-        this.tipo = tipo;
-        this.estado = Estado.NORMAL;
+        System.out.println("Pokemones de " + entrenador2.getNombre() + ":");
+        entrenador2.mostrarPokemones();
     }
 
-    public void atacar(Pokemon oponente) {
-        double multiplicadorDeDaño = this.tipo.obtenerMultiplicadorDeDaño(this.tipo, oponente.tipo);
-        double dañoInfligido = this.puntosDeAtaque * multiplicadorDeDaño;
-        oponente.recibirDaño(dañoInfligido);
+    public static void iniciarBatalla(Entrenador entrenador1, Entrenador entrenador2) {
+        // Seleccionar un Pokémon de cada entrenador para la batalla
+        System.out.println("Selecciona un Pokémon de " + entrenador1.getNombre() + " para la batalla:");
+        Pokemon pokemon1 = seleccionarPokemon(entrenador1);
+        System.out.println("Selecciona un Pokémon de " + entrenador2.getNombre() + " para la batalla:");
+        Pokemon pokemon2 = seleccionarPokemon(entrenador2);
+
+        // Iniciar la batalla utilizando la clase Batalla
+        Batalla.iniciarBatalla(pokemon1, pokemon2);
     }
 
-    public void recibirDaño(double daño) {
-        this.salud -= daño;
-        if (this.salud <= 0) {
-            this.estado = Estado.DEBILITADO;
-        }
->>>>>>> Stashed changes
+    public static Pokemon seleccionarPokemon(Entrenador entrenador) {
+        entrenador.mostrarPokemones();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Elige un Pokémon: ");
+        int opcion = scanner.nextInt();
+        scanner.nextLine(); // Limpiar el buffer del scanner
+        return entrenador.getPokemon(opcion - 1); // Restamos 1 para obtener el índice correcto
     }
-
-    
-    public void entrenar() {
-       
-    }
-}
-
-
-class Entrenador {
-    private String nombre;
-    private List<Pokemon> equipo;
-    private List<Pokemon> pokemones;
-
-    public Entrenador(String nombre) {
-        this.nombre = nombre;
-        this.equipo = new ArrayList<>();
-        this.pokemones = new ArrayList<>();
-    }
-
-   
-    public void agregarPokemon(Pokemon pokemon) {
-        this.equipo.add(pokemon);
-        this.pokemones.add(pokemon);
-    }
-
-    
-    public void entrenarPokemon(Pokemon pokemon) {
-        pokemon.entrenar();
-    }
-
-    
-    public void mostrarPokemones() {
-        for (Pokemon pokemon : pokemones) {
-            System.out.println(pokemon.nombre);
-        }
-    }
-
-    public Pokemon prepararBatalla() {
-        
-        return equipo.get(0); 
-    }
-
-    public void batallar(Entrenador oponente) {
-    }
-}
-
-enum Estado {
-    NORMAL, DEBILITADO
-}
-
-class Batalla {
-    public void iniciarBatalla(Pokemon pokemon1, Pokemon pokemon2) {
-        
-    }
-}
-
-class Growlithe extends Pokemon {
-    public Growlithe(String nombre, double salud, double puntosDeAtaque) {
-        super(nombre, salud, puntosDeAtaque, TipoPokemon.FUEGO);
-    }
-
-    
-}
-
-class Onix extends Pokemon {
-    public Onix(String nombre, double salud, double puntosDeAtaque) {
-        super(nombre, salud, puntosDeAtaque, TipoPokemon.TIERRA);
-    }
-
-    
 }

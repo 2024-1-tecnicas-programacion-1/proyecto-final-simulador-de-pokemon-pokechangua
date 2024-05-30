@@ -12,7 +12,7 @@ public class Entrenador {
         this.pokemones = new ArrayList<>();
     }
 
-    // Método para agregar un Pokémon al equipo del entrenador
+    
     public void agregarPokemon(Pokemon pokemon) {
         this.pokemones.add(pokemon);
     }
